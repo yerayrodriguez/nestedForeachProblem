@@ -23,7 +23,7 @@ public class TestManager implements Serializable {
     // Parent 0 with no children
     Parent parent0 = new Parent("P0");
     root.add(parent0);
-    // Parent 1 with n2 children
+    // Parent 1 with 3 children
     Parent parent1 = new Parent("P1");
     parent1.getChildren().add(new Child("C0"));
     parent1.getChildren().add(new Child("C1"));
