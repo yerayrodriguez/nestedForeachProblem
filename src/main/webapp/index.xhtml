@@ -2,16 +2,24 @@
 <html
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:c="http://java.sun.com/jsp/jstl/core">
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head />
 <h:body>
-    <h:form id="form" prependId="false">
-        <h:commandButton actionListener="#{testManager.extractFirst()}" ajax="true" update="@form" value="Submit" />
+    <h:form id="myForm">
+        <h:commandButton action="#{testManager.submit()}" value="NON AJAX" />
+        <h:commandButton value="AJAX" action="#{testManager.submit()}">
+            <f:ajax render="myForm" />
+        </h:commandButton>
+        <p:commandButton action="#{testManager.submit()}" value="PF NON AJAX" ajax="false" />
+        <p:commandButton action="#{testManager.submit()}" value="PF AJAX" update="myForm" />
         <ul>
             <c:forEach var="parent" items="#{testManager.root}">
-                <li>Parent #{parent.id}</li>
+                <li>parent.id: #{parent.id}</li>
                 <ul>
                     <c:forEach var="child" items="#{parent.children}" varStatus="childIndex">
-                        <li>Child #{child.id} (#{childIndex.current.id})</li>
+                        <li>child.id: #{child.id} - childIndex.current.id: (#{childIndex.current.id})</li>
                     </c:forEach>
                 </ul>
             </c:forEach>
